@@ -13867,7 +13867,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(44);
+module.exports = __webpack_require__(47);
 
 
 /***/ }),
@@ -13887,6 +13887,9 @@ window.Vue = __webpack_require__(36);
 window.bus = new Vue();
 
 __webpack_require__(39);
+__webpack_require__(40);
+__webpack_require__(41);
+__webpack_require__(42);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13894,7 +13897,7 @@ __webpack_require__(39);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('delete-model', __webpack_require__(40));
+Vue.component('delete-model', __webpack_require__(43));
 
 var app = new Vue({
   el: '#app'
@@ -47177,14 +47180,83 @@ Vue.component('PostList', {
 
 /***/ }),
 /* 40 */
+/***/ (function(module, exports) {
+
+Vue.component('UserList', {
+    data: function data() {
+        return {
+            url: '',
+            title: ''
+        };
+    },
+
+
+    methods: {
+        deleteModel: function deleteModel(url, title) {
+            this.url = url;
+            this.title = title;
+
+            bus.$emit('show-delete-model-modal');
+        }
+    }
+});
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+Vue.component('RoleList', {
+    data: function data() {
+        return {
+            url: '',
+            title: ''
+        };
+    },
+
+
+    methods: {
+        deleteModel: function deleteModel(url, title) {
+            this.url = url;
+            this.title = title;
+
+            bus.$emit('show-delete-model-modal');
+        }
+    }
+});
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports) {
+
+Vue.component('PermissionList', {
+    data: function data() {
+        return {
+            url: '',
+            title: ''
+        };
+    },
+
+
+    methods: {
+        deleteModel: function deleteModel(url, title) {
+            this.url = url;
+            this.title = title;
+
+            bus.$emit('show-delete-model-modal');
+        }
+    }
+});
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(41)
+var normalizeComponent = __webpack_require__(44)
 /* script */
-var __vue_script__ = __webpack_require__(42)
+var __vue_script__ = __webpack_require__(45)
 /* template */
-var __vue_template__ = __webpack_require__(43)
+var __vue_template__ = __webpack_require__(46)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47223,7 +47295,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 41 */
+/* 44 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47332,12 +47404,11 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 42 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -47386,8 +47457,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             url: null,
             title: null,
-            busy: false,
-            message: null
+            busy: false
         };
     },
 
@@ -47403,15 +47473,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             this.busy = true;
+
             axios.delete(this.url).then(function (response) {
-                _this2.message = response.data.message;
+                alert(response.data.message);
+
                 _this2.busy = false;
+
                 setTimeout(function () {
                     _this2.hideModal();
                     window.location.reload(true);
-                }, 2000);
+                }, 500);
             }).catch(function (error) {
-                console.log(error);
+                var response = error.response;
+
+                if (response) {
+                    alert(response.data.message);
+                    _this2.hideModal();
+                }
+
+                _this2.busy = false;
             });
         }
     },
@@ -47427,7 +47507,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 43 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47440,6 +47520,7 @@ var render = function() {
       staticClass: "modal fade",
       attrs: {
         id: "delete-model-modal",
+        "data-backdrop": "static",
         tabindex: "-1",
         role: "dialog",
         "aria-labelledby": "delete-model-modal-label",
@@ -47471,22 +47552,6 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
-            _c(
-              "p",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.message,
-                    expression: "message"
-                  }
-                ],
-                staticClass: "text-success float-left"
-              },
-              [_vm._v(_vm._s(_vm.message))]
-            ),
-            _vm._v(" "),
             _c(
               "button",
               {
@@ -47550,7 +47615,7 @@ if (false) {
 }
 
 /***/ }),
-/* 44 */
+/* 47 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

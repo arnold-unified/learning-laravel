@@ -36,10 +36,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <li><a class="nav-link {{ \Route::currentRouteName() == 'users.list' ? 'active' : '' }}" href="{{ route('users.list') }}">{{ __('Users') }}</a></li>
-                            <li><a class="nav-link {{ \Route::currentRouteName() == 'posts.list' ? 'active' : '' }}" href="{{ route('posts.list') }}">{{ __('Posts') }}</a></li>
-                            <li><a class="nav-link {{ \Route::currentRouteName() == 'roles.list' ? 'active' : '' }}" href="{{ route('roles.list') }}">{{ __('Roles') }}</a></li>
-                            <li><a class="nav-link {{ \Route::currentRouteName() == 'permissions.list' ? 'active' : '' }}" href="{{ route('permissions.list') }}">{{ __('Permissions') }}</a></li>
+                            <li><a class="nav-link {{ Request::route()->getPrefix() == '/users' ? 'active' : '' }}" href="{{ route('users.list') }}">{{ __('Users') }}</a></li>
+                            <li><a class="nav-link {{ Request::route()->getPrefix() == '/posts' ? 'active' : '' }}" href="{{ route('posts.list') }}">{{ __('Posts') }}</a></li>
+                            <li><a class="nav-link {{ Request::route()->getPrefix() == '/roles' ? 'active' : '' }}" href="{{ route('roles.list') }}">{{ __('Roles') }}</a></li>
+                            <li><a class="nav-link {{ Request::route()->getPrefix() == '/permissions' ? 'active' : '' }}" href="{{ route('permissions.list') }}">{{ __('Permissions') }}</a></li>
                         @endauth
                     </ul>
 

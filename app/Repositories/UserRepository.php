@@ -59,4 +59,10 @@ class UserRepository implements UserRepositoryInterface
             $user->roles()->sync($data['roles']);
         }
     }
+
+    public function delete($id)
+    {
+        $user = $this->find($id);
+        $user->delete();
+    }
 }

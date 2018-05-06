@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="delete-model-modal" tabindex="-1" role="dialog" aria-labelledby="delete-model-modal-label" aria-hidden="true">
+    <div class="modal fade" id="delete-model-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="delete-model-modal-label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -12,7 +12,6 @@
                     <p class="text-center">Are you sure want to delete <strong>{{ title }}</strong>?</p>
                 </div>
                 <div class="modal-footer">
-                    <p v-show="message" class="text-success float-left">{{ message }}</p>
                     <button type="button" :disabled="busy" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button @click.stop.prevent="deleteModel" :disabled="busy" type="button" class="btn btn-danger">Delete</button>
                 </div>
@@ -46,8 +45,7 @@
             return {
                 url: null,
                 title: null,
-                busy: false,
-                message: null
+                busy: false
             }
         },
 
@@ -60,17 +58,27 @@
             },
             deleteModel () {
                 this.busy = true
+
                 axios.delete(this.url)
                     .then(response => {
-                        this.message = response.data.message
+                        alert(response.data.message)
+
                         this.busy = false
+                        
                         setTimeout(() => {
                             this.hideModal()
                             window.location.reload(true)
-                        }, 2000)
+                        }, 500)
                     })
                     .catch(error => {
-                        console.log(error)
+                        let response = error.response
+
+                        if (response) {
+                            alert(response.data.message)
+                            this.hideModal()
+                        }
+
+                        this.busy = false
                     })
             }
         },

@@ -11,6 +11,9 @@ window.Vue = require('vue');
 window.bus = new Vue()
 
 require('./components/Posts/List');
+require('./components/Users/List');
+require('./components/Roles/List');
+require('./components/Permissions/List');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

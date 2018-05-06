@@ -35,7 +35,7 @@ class PermissionsController extends Controller
 
         $this->permissionRepository->store($request->all());
 
-        return redirect()->route('permissions.list');
+        return redirect()->route('permissions.list')->with('status', 'Permission successfully created.');
     }
 
     public function edit(Permission $permission)
@@ -49,6 +49,18 @@ class PermissionsController extends Controller
 
         $this->permissionRepository->update($permission->id, $request->all());
 
-        return redirect()->route('permissions.list');
+        return redirect()->route('permissions.list')->with('status', 'Permission successfully updated.');
+    }
+
+    public function destroy(Permission $permission)
+    {
+        $this->authorize('delete', $permission);
+
+        $this->permissionRepository->delete($permission->id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Permission successfully deleted.'
+        ]);
     }
 }

@@ -47,4 +47,10 @@ class RoleRepository implements RoleRepositoryInterface
             $role->permissions()->sync($data['permissions']);
         }
     }
+
+    public function delete($id)
+    {
+        $role = $this->find($id);
+        $role->delete();
+    }
 }

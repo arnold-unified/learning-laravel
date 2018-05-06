@@ -42,7 +42,7 @@ class RolesController extends Controller
 
         $this->roleRepository->store($request->all());
 
-        return redirect()->route('roles.list');
+        return redirect()->route('roles.list')->with('status', 'Role successfully created.');
     }
 
     public function edit(Role $role)
@@ -59,6 +59,18 @@ class RolesController extends Controller
 
         $this->roleRepository->update($role->id, $request->all());
 
-        return redirect()->route('roles.list');
+        return redirect()->route('roles.list')->with('status', 'Role successfully updated.');
+    }
+
+    public function destroy(Role $role)
+    {
+        $this->authorize('delete', $role);
+
+        $this->roleRepository->delete($role->id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Role successfully deleted.'
+        ]);
     }
 }

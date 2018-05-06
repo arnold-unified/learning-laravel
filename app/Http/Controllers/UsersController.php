@@ -42,7 +42,7 @@ class UsersController extends Controller
 
         $this->userRepository->store($request->all());
 
-        return redirect()->route('users.list');
+        return redirect()->route('users.list')->with('status', 'User successfully created.');
     }
 
     public function edit(User $user)
@@ -59,6 +59,18 @@ class UsersController extends Controller
 
         $this->userRepository->update($user->id, $request->all());
 
-        return redirect()->route('users.list');
+        return redirect()->route('users.list')->with('status', 'User successfully updated.');
+    }
+
+    public function destroy(User $user)
+    {
+        $this->authorize('delete', $user);
+
+        $this->userRepository->delete($user->id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'User successfully deleted.'
+        ]);
     }
 }

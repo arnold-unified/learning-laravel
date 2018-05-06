@@ -38,7 +38,7 @@ class AuthorsPostsController extends Controller
 
         $this->postRepository->create($request->all());
 
-        return redirect()->route('posts.list');
+        return redirect()->route('posts.list')->with('status', 'Post successfully created.');
     }
 
     public function edit(Post $post)
@@ -52,7 +52,7 @@ class AuthorsPostsController extends Controller
 
         $this->postRepository->update($post->id, $request->all());
 
-        return redirect()->route('posts.list');
+        return redirect()->route('posts.list')->with('status', 'Post successfully updated.');
     }
 
     public function destroy(Post $post)

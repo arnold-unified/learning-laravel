@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', 'UsersController@store')->name('store');
         Route::get('{user}', 'UsersController@edit')->name('edit');
         Route::put('{user}', 'UsersController@update')->name('update');
+        Route::delete('{user}', 'UsersController@destroy')->name('destroy');
     });
 
     Route::prefix('roles')->name('roles.')->group(function () {
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', 'RolesController@store')->name('store');
         Route::get('{role}', 'RolesController@edit')->name('edit');
         Route::put('{role}', 'RolesController@update')->name('update');
+        Route::delete('{role}', 'RolesController@destroy')->name('destroy');
     });
 
     Route::prefix('permissions')->name('permissions.')->group(function () {
@@ -42,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', 'PermissionsController@store')->name('store');
         Route::get('{permission}', 'PermissionsController@edit')->name('edit');
         Route::put('{permission}', 'PermissionsController@update')->name('update');
+        Route::delete('{permission}', 'PermissionsController@destroy')->name('destroy');
     });
 
     Route::prefix('posts')->name('posts.')->group(function () {

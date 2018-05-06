@@ -39,4 +39,10 @@ class PermissionRepository implements PermissionRepositoryInterface
         $permission->description = $data['description'];
         $permission->save();
     }
+
+    public function delete($id)
+    {
+        $permission = $this->find($id);
+        $permission->delete();
+    }
 }
