@@ -48,4 +48,10 @@ class PostRepository implements PostRepositoryInterface
         $post->published_at = array_key_exists('publish', $data) ? Carbon::now() : null;
         $post->save();
     }
+
+    public function delete($id)
+    {
+        $post = $this->find($id);
+        $post->delete();
+    }
 }

@@ -54,4 +54,16 @@ class AuthorsPostsController extends Controller
 
         return redirect()->route('posts.list');
     }
+
+    public function destroy(Post $post)
+    {
+        $this->authorize('delete', $post);
+
+        $this->postRepository->delete($post->id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Post successfully deleted.'
+        ]);
+    }
 }

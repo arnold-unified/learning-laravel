@@ -50,5 +50,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', 'AuthorsPostsController@store')->name('store');
         Route::get('{post}', 'AuthorsPostsController@edit')->name('edit');
         Route::put('{post}', 'AuthorsPostsController@update')->name('update');
+        Route::delete('{post}', 'AuthorsPostsController@destroy')->name('destroy');
     });
 });
