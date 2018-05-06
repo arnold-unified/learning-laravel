@@ -17,7 +17,7 @@ class SuperAdminSeeder extends Seeder
     {
         // User
         $user = User::create([
-            'email' => 'peter.wall@learninglaravel.com',
+            'email' => 'superadmin@learninglaravel.com',
             'password' => Hash::make('123456')
         ]);
 
@@ -33,7 +33,7 @@ class SuperAdminSeeder extends Seeder
         // Role
         $role = Role::create([
             'name' => 'superadmin',
-            'description' => 'Super admin user.'
+            'description' => 'Super admin role.'
         ]);
 
         // Attach roles

@@ -22,6 +22,7 @@ class CleanDatabase extends Command
     protected $description = 'Clean database';
 
     protected $tables = [
+        'posts',
         'permission_role',
         'permissions',
         'role_user',
