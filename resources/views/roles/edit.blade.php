@@ -11,7 +11,7 @@
                     <div class="card-header">
                         <button type="submit" class="btn btn-primary btn-sm float-right ml-1"><i class="fa fa-save"></i> Update</button>
                         <a href="{{ route('roles.list') }}" class="btn btn-secondary btn-sm float-right"><i class="fa fa-arrow-left"></i> Back</a>
-                        Edit Role ({{ $role->name }})
+                        {{ $role->name }}
                     </div>
 
                     <div class="card-body">

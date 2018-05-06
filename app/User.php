@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Profile;
 use App\Role;
 use App\UserPermissionView;
+use App\Post;
 
 class User extends Authenticatable
 {
@@ -20,7 +21,7 @@ class User extends Authenticatable
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     protected $dates = [
@@ -40,6 +41,16 @@ class User extends Authenticatable
     public function permissions()
     {
         return $this->hasMany(UserPermissionView::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
+
+    public function moderated_posts()
+    {
+        return $this->hasMany(Post::class, 'last_moderator_id');
     }
 
     public function getCreatedAttribute()

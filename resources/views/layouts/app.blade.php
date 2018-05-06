@@ -37,7 +37,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li><a class="nav-link {{ \Route::currentRouteName() == 'users.list' ? 'active' : '' }}" href="{{ route('users.list') }}">{{ __('Users') }}</a></li>
-                            <li><a class="nav-link {{ \Route::currentRouteName() == 'posts.list' ? 'active' : '' }}" href="{{ route('users.list') }}">{{ __('Posts') }}</a></li>
+                            <li><a class="nav-link {{ \Route::currentRouteName() == 'posts.list' ? 'active' : '' }}" href="{{ route('posts.list') }}">{{ __('Posts') }}</a></li>
                             <li><a class="nav-link {{ \Route::currentRouteName() == 'roles.list' ? 'active' : '' }}" href="{{ route('roles.list') }}">{{ __('Roles') }}</a></li>
                             <li><a class="nav-link {{ \Route::currentRouteName() == 'permissions.list' ? 'active' : '' }}" href="{{ route('permissions.list') }}">{{ __('Permissions') }}</a></li>
                         @endauth
