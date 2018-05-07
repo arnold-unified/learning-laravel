@@ -21,12 +21,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::prefix('posts')->name('posts.')->group(function () {
-        Route::get('/', 'PostsController@index')->name('list');
-        Route::get('create', 'PostsController@create')->name('create');
-        Route::post('/', 'PostsController@store')->name('store');
-        Route::get('{post}', 'PostsController@edit')->name('edit');
-        Route::put('{post}', 'PostsController@update')->name('update');
-        Route::delete('{post}', 'PostsController@destroy')->name('destroy');
+        Route::get('/', 'AuthorsPostsController@index')->name('list');
+        Route::get('create', 'AuthorsPostsController@create')->name('create');
+        Route::post('/', 'AuthorsPostsController@store')->name('store');
+        Route::get('{post}', 'AuthorsPostsController@edit')->name('edit');
+        Route::put('{post}', 'AuthorsPostsController@update')->name('update');
+        Route::delete('{post}', 'AuthorsPostsController@destroy')->name('destroy');
     });
 
     Route::prefix('users')->name('users.')->group(function () {
