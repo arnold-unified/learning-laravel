@@ -16,7 +16,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('posts.create') }}" class="btn btn-success btn-sm float-right"><i class="fa fa-plus"></i> Add Post</a>
+                        <a href="/posts/create" class="btn btn-success btn-sm float-right"><i class="fa fa-plus"></i> Add Post</a>
                         Posts
                     </div>
 
@@ -46,8 +46,13 @@
                                             <td class="text-center">{{ $post->published }}</td>
                                             <td>{{ $post->moderator && $post->moderator->profile ? $post->moderator->profile->full_name : '' }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('posts.edit', ['id' => $post->id]) }}" class="btn btn-secondary btn-sm"><i class="fa fa-pencil-alt"></i></a>
-                                                <a href="#" @click.stop.prevent="deleteModel('/posts/' + {{ $post->id }}, '{{ $post->title }}')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                                <form action="/posts/{{ $post->id }}" method="post">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <a href="/posts/{{ $post->id }}" class="btn btn-secondary btn-sm"><i class="fa fa-pencil-alt"></i></a>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                </form>
+                                                {{-- <a href="#" @click.stop.prevent="deleteModel('/posts/' + {{ $post->id }}, '{{ $post->title }}')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> --}}
                                             </td>
                                         </tr>
                                     @endforeach
