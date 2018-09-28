@@ -52,7 +52,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->profile->full_name }} <span class="caret"></span>
+                                    {{ ucwords(Auth::user()->profile->first_name) . ' ' . ucwords(Auth::user()->profile->last_name) }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
