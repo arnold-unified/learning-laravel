@@ -18,19 +18,4 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function getFirstNameAttribute($value)
-    {
-        return ucwords($value);
-    }
-
-    public function getLastNameAttribute($value)
-    {
-        return ucwords($value);
-    }
-
-    public function getFullNameAttribute()
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
 }

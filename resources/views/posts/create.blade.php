@@ -9,7 +9,7 @@
                     @csrf
                     <div class="card-header">
                         <button type="submit" class="btn btn-primary btn-sm float-right ml-1"><i class="fa fa-save"></i> Save</button>
-                        <a href="{{ route('posts.list') }}" class="btn btn-secondary btn-sm float-right"><i class="fa fa-arrow-left"></i> Back</a>
+                        <a href="/posts" class="btn btn-secondary btn-sm float-right"><i class="fa fa-arrow-left"></i> Back</a>
                         Create Post
                     </div>
 
