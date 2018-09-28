@@ -26,7 +26,7 @@
                                 <tr>
                                     <th class="text-center">Title</th>
                                     <th class="text-center">Content</th>
-                                    @if ($is_superadmin)
+                                    @if (isset($is_superadmin) && $is_superadmin)
                                         <th class="text-center">Author</th>
                                     @endif
                                     <th class="text-center">Published</th>
@@ -40,8 +40,8 @@
                                         <tr>
                                             <td>{{ $post->title }}</td>
                                             <td>{{ str_limit($post->content, 20) }}</td>
-                                            @if ($is_superadmin)
-                                                <td>{{ $post->author->profile ? $post->author->profile->full_name : '' }}</td>
+                                            @if (isset($is_superadmin) && $is_superadmin)
+                                                <td>{{ $post->author && $post->author->profile ? $post->author->profile->full_name : '' }}</td>
                                             @endif
                                             <td class="text-center">{{ $post->published }}</td>
                                             <td>{{ $post->moderator && $post->moderator->profile ? $post->moderator->profile->full_name : '' }}</td>

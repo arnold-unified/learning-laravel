@@ -37,7 +37,7 @@
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <li><a class="nav-link {{ Request::route()->getPrefix() == '/users' ? 'active' : '' }}" href="{{ route('users.list') }}">{{ __('Users') }}</a></li>
-                            <li><a class="nav-link {{ Request::route()->getPrefix() == '/posts' ? 'active' : '' }}" href="{{ route('posts.list') }}">{{ __('Posts') }}</a></li>
+                            <li><a class="nav-link {{ Request::route()->getPrefix() == '/posts' ? 'active' : '' }}" href="/posts">{{ __('Posts') }}</a></li>
                             <li><a class="nav-link {{ Request::route()->getPrefix() == '/roles' ? 'active' : '' }}" href="{{ route('roles.list') }}">{{ __('Roles') }}</a></li>
                             <li><a class="nav-link {{ Request::route()->getPrefix() == '/permissions' ? 'active' : '' }}" href="{{ route('permissions.list') }}">{{ __('Permissions') }}</a></li>
                         @endauth
