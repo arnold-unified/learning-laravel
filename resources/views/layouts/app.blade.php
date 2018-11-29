@@ -8,6 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- App URL -->
+    <meta name="app-url" content="{{ env('APP_URL') }}">
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -77,5 +80,21 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        (function () {
+            let app_url = document.head.querySelector('meta[name="app-url"]').content
+            let notify = new EventSource(`${app_url}/wbhk`)
+            notify.onmessage = event => {
+                let repo_date_storage = localStorage.getItem('repo_date')
+                let repo_date_new = event.data
+
+                if (repo_date_storage !== repo_date_new) {
+                    localStorage.setItem('repo_date', repo_date_new)
+                    alert('New update from IACCS!')
+                }
+            }
+        })();
+    </script>
 </body>
 </html>

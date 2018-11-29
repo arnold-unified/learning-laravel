@@ -1,6 +1,18 @@
 <?php
 
-// Testing webhook
+Route::get('/wbhk', function () {
+    $response = new Symfony\Component\HttpFoundation\StreamedResponse(function () {
+        echo 'data: ' . cache('repo_date') . "\n\n";
+        ob_flush();
+        flush();
+        usleep(200000);
+    });
+    $response->headers->set('Content-Type', 'text/event-stream');
+    $response->headers->set('X-Accel-Buffering', 'no');
+    $response->headers->set('Cache-Control', 'no-cache');
+
+    return $response;
+});
 
 Route::get('/', function () {
     return view('welcome');
