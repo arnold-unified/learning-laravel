@@ -67,4 +67,11 @@ Route::middleware(['auth'])->group(function () {
         Route::put('{post}', 'AuthorsPostsController@update')->name('update');
         Route::delete('{post}', 'AuthorsPostsController@destroy')->name('destroy');
     }); */
+
+    Route::get('/posts', 'PostsController@index');
+    Route::get('/posts/create', 'PostsController@create');
+    Route::post('/posts', 'PostsController@store');
+    Route::get('/posts/{id}', 'PostsController@edit');
+    Route::put('/posts/{id}', 'PostsController@update');
+    Route::delete('/posts/{id}', 'PostsController@delete');
 });

@@ -10,10 +10,9 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['author', 'author.profile'])->get();
-        $is_superadmin = auth()->user()->hasRole('superadmin');
+        $posts = Post::get();
 
-        return view('posts.index', compact('posts', 'is_superadmin'));
+        return view('posts.index', compact('posts'));
     }
 
     public function create()
@@ -23,48 +22,44 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|unique:posts|max:255',
-            'content' => 'required|min:20'
-        ]);
-
         $post = new Post();
+
         $post->user_id = $request->user()->id;
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->published_at = $request->has('publish') ? Carbon::now() : null;
+        if ($request->has('publish')) {
+            $post->published_at = Carbon::now();
+        }
         $post->save();
 
-        return redirect()->route('posts.list')->with('status', 'Post successfully created.');
+        return redirect('/posts');
     }
 
-    public function edit(Post $post)
+    public function edit($id)
     {
+        $post = Post::find($id);
+
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Post $post, Request $request)
+    public function update($id, Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|unique:posts|max:255',
-            'content' => 'required|min:20'
-        ]);
+        $post = Post::find($id);
 
         $post->title = $request->title;
         $post->content = $request->content;
         $post->published_at = $request->has('publish') ? Carbon::now() : null;
         $post->save();
 
-        return redirect()->route('posts.list')->with('status', 'Post successfully updated.');
+        return redirect('/posts');
     }
 
-    public function destroy(Post $post)
+    public function delete($id)
     {
+        $post = Post::find($id);
+
         $post->delete();
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Post successfully deleted.'
-        ]);
+        return redirect('/posts');
     }
 }
