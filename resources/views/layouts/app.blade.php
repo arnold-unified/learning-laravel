@@ -17,9 +17,9 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/fa-regular.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fa-solid.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome-all.min.css') }}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -80,21 +80,5 @@
             @yield('content')
         </main>
     </div>
-
-    <script>
-        (function () {
-            let app_url = document.head.querySelector('meta[name="app-url"]').content
-            let notify = new EventSource(`${app_url}/wbhk`)
-            notify.onmessage = event => {
-                let repo_date_storage = localStorage.getItem('repo_date')
-                let repo_date_new = event.data
-
-                if (repo_date_storage !== repo_date_new) {
-                    localStorage.setItem('repo_date', repo_date_new)
-                    alert('New update from IACCS!')
-                }
-            }
-        })();
-    </script>
 </body>
 </html>

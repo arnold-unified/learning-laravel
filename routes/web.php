@@ -1,19 +1,5 @@
 <?php
 
-Route::get('/wbhk', function () {
-    $response = new Symfony\Component\HttpFoundation\StreamedResponse(function () {
-        echo 'data: ' . cache('repo_date') . "\n\n";
-        ob_flush();
-        flush();
-        usleep(200000);
-    });
-    $response->headers->set('Content-Type', 'text/event-stream');
-    $response->headers->set('X-Accel-Buffering', 'no');
-    $response->headers->set('Cache-Control', 'no-cache');
-
-    return $response;
-});
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -68,10 +54,4 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('{post}', 'AuthorsPostsController@destroy')->name('destroy');
     }); */
 
-    Route::get('/posts', 'PostsController@index');
-    Route::get('/posts/create', 'PostsController@create');
-    Route::post('/posts', 'PostsController@store');
-    Route::get('/posts/{id}', 'PostsController@edit');
-    Route::put('/posts/{id}', 'PostsController@update');
-    Route::delete('/posts/{id}', 'PostsController@delete');
 });
