@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Spatie\Crawler\Crawler;
-use App\CrawlLogger;
+use App\Scrapers\CrawlLogger;
 
 class CrawlWebsite extends Command
 {
     /** @var \Spatie\Crawler\Crawler */
     protected $crawler;
 
-    /** @var \App\CrawlLogger */
+    /** @var \App\Scrapers\CrawlLogger */
     protected $crawlLogger;
 
     /**
@@ -52,7 +52,7 @@ class CrawlWebsite extends Command
         $url = $this->argument('url');
         $output = $this->option('output');
 
-        $this->line("Start crawling {$url}...");
+        $this->line("Start crawling {$url}...\n");
 
         $this->crawlLogger->setOutput($this->getOutput());
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Scrapers;
 
 use Spatie\Crawler\CrawlObserver;
 use Psr\Http\Message\UriInterface;
